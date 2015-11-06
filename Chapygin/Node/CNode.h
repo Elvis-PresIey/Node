@@ -1,11 +1,11 @@
-#include <iostream>
+#pragma once
 
+#ifndef __CNODE_H__
+#define __CNODE_H__
 
 struct CNode {
 	int val;
 	CNode* next;
-
-	void print(CNode* pFirst);
-	CNode* search(CNode* pFirst, int t);
-	void insert(CNode** pFirst, CNode* a);
 };
+
+#endif
