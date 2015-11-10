@@ -12,6 +12,8 @@ void print(CNode *pFirst) {
 }
 
 CNode* merge(CNode* p1, CNode* p2) {
+	if (!(p1 && p2)) throw std::exception("Empty Lists :(");
+	if (!isSorted(p1) || !isSorted(p2)) throw std::exception("At least one of the lists is unsorted :(");
 	if (!p1) return p2;
 	if (!p2) return p1;
 	CNode* resultHead = NULL;
@@ -37,4 +39,14 @@ CNode* merge(CNode* p1, CNode* p2) {
 	if (p1) resP -> next = p1;
 	if (p2) resP -> next = p2;
 	return resultHead;
+}
+
+bool isSorted(CNode* head) {
+	int prevVal = head -> val;
+	while (head -> next) {
+		prevVal = head -> val;
+		head = head -> next;
+		if (prevVal > head -> val) return false;
+	}
+	return true;
 }
