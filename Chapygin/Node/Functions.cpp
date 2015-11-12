@@ -1,5 +1,20 @@
 #include "Functions.h"
 
+CNode* createList(int count, const int* vals) {
+  if (count <= 0) return 0;
+  CNode *head = new CNode;
+  head->val = vals[0];
+  CNode *prev = head;
+  for (int i = 1; i < count; ++i) {
+    CNode *node = new CNode;
+    node->val = vals[i];
+    prev->next = node;
+    prev = node;
+  }
+  prev->next = 0;
+  return head;
+}
+
 void print(CNode *pFirst) {
 	while (pFirst != NULL) {
 		printf("%d", pFirst -> val);
@@ -12,7 +27,7 @@ void print(CNode *pFirst) {
 }
 
 CNode* merge(CNode* p1, CNode* p2) {
-	if (!(p1 && p2)) throw std::exception("Empty Lists :(");
+	if ((!p1) && (!p2)) throw std::exception("Empty Lists :(");
 	if (!isSorted(p1) || !isSorted(p2)) throw std::exception("At least one of the lists is unsorted :(");
 	if (!p1) return p2;
 	if (!p2) return p1;
@@ -42,6 +57,7 @@ CNode* merge(CNode* p1, CNode* p2) {
 }
 
 bool isSorted(CNode* head) {
+	if (!head) return true;
 	int prevVal = head -> val;
 	while (head -> next) {
 		prevVal = head -> val;
