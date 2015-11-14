@@ -1,28 +1,6 @@
 #include "gtest\gtest.h"
 #include "CNode.h"
-#include "Functions.cpp"
-
-TEST(createList, can_create_empty_list) {
-  CNode *head = createList(0, 0);
-  CNode *expected_head = 0;
-  EXPECT_EQ(expected_head, head);
-}
-
-TEST(createList, can_create_list) {
-  const int kListSize = 10;
-  int vals[kListSize];
-  for (int i = 0; i < kListSize; ++i)
-    vals[i] = i + 1;
-  CNode *head = createList(kListSize, vals);
-
-  int k = 0;
-  while (head != 0) {
-    EXPECT_EQ(vals[k], head->val);
-    head = head->next;
-    ++k;
-  }
-  EXPECT_EQ(kListSize, k);
-}
+#include "Functions.h"
 
 TEST(CNode, throws_when_lists_are_null) {
 	CNode* head1 = NULL;
@@ -43,7 +21,6 @@ TEST(CNode, throws_when_list_is_unsorted) {
 	CNode* head2 = createList(kListSize, vals2);
 	ASSERT_ANY_THROW(merge(head1, head2));
 }
-
 
 TEST(CNode, can_merge_when_one_of_lists_is_empty) {
 	const int kListSize = 5;
