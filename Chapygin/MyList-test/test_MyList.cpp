@@ -1,11 +1,10 @@
-#include "gtest\gtest.h"
-#include "CNode.h"
-#include "Functions.h"
+#include "MyList.h"
+#include <gtest.h>
 
-TEST(CNode, throws_when_lists_are_null) {
+TEST(CNode, can_merge_null_lists) {
 	CNode* head1 = NULL;
 	CNode* head2 = NULL;
-	ASSERT_ANY_THROW(merge(head1, head2));
+	EXPECT_EQ(NULL, merge(head1, head2));
 }
 
 TEST(CNode, throws_when_list_is_unsorted) {
@@ -17,8 +16,8 @@ TEST(CNode, throws_when_list_is_unsorted) {
 		else vals1[i] = -i;
 		vals2[i] = i + 5;
 	}
-	CNode* head1 = createList(kListSize, vals1);
-	CNode* head2 = createList(kListSize, vals2);
+	CNode* head1 = CreateList(kListSize, vals1);
+	CNode* head2 = CreateList(kListSize, vals2);
 	ASSERT_ANY_THROW(merge(head1, head2));
 }
 
@@ -27,7 +26,7 @@ TEST(CNode, can_merge_when_one_of_lists_is_empty) {
 	int vals[kListSize];
 	for (int i = 0; i < kListSize; i++)
 		vals[i] = i + 5;
-	CNode* head1 = createList(kListSize, vals);
+	CNode* head1 = CreateList(kListSize, vals);
 	CNode* head2 = NULL;
 	CNode* expectedHead = merge(head1, head2);
 
@@ -67,8 +66,8 @@ TEST(CNode, can_merge_lists) {
 		}
 	}
 
-	CNode* head1 = createList(kListSize1, vals1);
-	CNode* head2 = createList(kListSize2, vals2);
+	CNode* head1 = CreateList(kListSize1, vals1);
+	CNode* head2 = CreateList(kListSize2, vals2);
 	CNode* headResult = merge(head1, head2);
 
 	int k = 0;
