@@ -2,7 +2,7 @@
 #define GTEST_MYLIST_MYLIST_H
 
 #include <stdlib.h>
-#include <exception></exception>
+#include <exception>
 #include "CNode.h"
 
 CNode* CreateList(int count, const int* vals);
